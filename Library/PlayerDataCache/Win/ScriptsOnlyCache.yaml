@@ -15,8 +15,10 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.Image
     - UnityEngine.UI.Text
   sceneClasses:
     Assets/Scenes/SampleScene.unity:
@@ -43,11 +45,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11306}
     - Class: 114
+      Script: {instanceID: 11346}
+    - Class: 114
       Script: {instanceID: 11446}
     - Class: 114
       Script: {instanceID: 11758}
     - Class: 114
       Script: {instanceID: 11864}
+    - Class: 114
+      Script: {instanceID: 12154}
     - Class: 114
       Script: {instanceID: 12658}
     - Class: 114
@@ -167,7 +173,7 @@ ScriptsOnlyBuild:
     className: GridLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 81a2123332d679be4a5a544b7e35d587
+      Hash: b915f37ed5a7565971b33d071580355a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: player_score
@@ -516,4 +522,4 @@ ScriptsOnlyBuild:
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: D:/GitHub/oop_project/test_build/oop_project.exe
+  playerPath: D:/GitHub/oop_project/final build/oop_project.exe
