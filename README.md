@@ -11,4 +11,6 @@
 # 2.项目详解
 ## global_define.cs
 - global_define中有三个类：glob，chess和mouse（默认提供的monobehavior在本脚本中并不需要用到）。
-  - glob类中负责定义各类静态（全局）数据及方法（例如判定吃子状态的check方法）；
+  1. glob类中负责定义各类静态（全局）数据及方法（例如判定吃子状态的check方法）；
+  2. chess类负责定义棋子，其中包含棋子的gameobject成员obj，位置变量posx，posy等；
+  3. mouse类负责定义光标，其中包含光标的gameobject成员obj，两种光标图案等；
