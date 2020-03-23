@@ -12,4 +12,4 @@
 ## global_define.cs
 - global_define中有三个类：glob，chess和mouse（默认提供的monobehavior在本脚本中并不需要用到）。
 > glob类中负责定义各类静态（全局）数据及方法（例如判定吃子状态的check方法）；
-> sadsa
+>> sadsa
