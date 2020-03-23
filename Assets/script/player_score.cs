@@ -22,7 +22,7 @@ public class player_score : MonoBehaviour
         manual_button.onClick.AddListener(undisp);
         glob.is_pause = 1;
     }
-    public void undisp()
+    public void undisp()//disp/undisp分别为显示/隐藏操作说明文字的监听事件
     {
         manual_text.text = "";
         manual_button.onClick.RemoveAllListeners();
@@ -46,11 +46,19 @@ public class player_score : MonoBehaviour
         }
         if (glob.chess_num[1] < 2 || (glob.cur_id == 1 && glob.remain_time <= 0)) 
         {
+            if (glob.remain_time <= 0)
+            {
+                glob.remain_time = 0;
+            }
             glob.is_win = 1;
             winning_tag.text = "黄方胜！按A重新开始游戏";
         }
         if (glob.chess_num[2] < 2 || (glob.cur_id == 2 && glob.remain_time <= 0))
         {
+            if (glob.remain_time <= 0)
+            {
+                glob.remain_time = 0;
+            }
             glob.is_win = 1;
             winning_tag.text = "红方胜！按A重新开始游戏";
         }

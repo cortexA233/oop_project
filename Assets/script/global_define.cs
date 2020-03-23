@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class global_define : MonoBehaviour
 {
-    public GameObject cred, cyellow;
+    public GameObject cred, cyellow;//该两个gameobject为红黄双方棋子的样本，定义在monobehavior子类中是为了方便在unity编辑器中直接赋予变量初始值
     // Start is called before the first frame update
     void Start()
     {
@@ -29,9 +29,9 @@ public class glob //此类专用于定义全局变量和全局方法
     public static mouse mou;//用来存储光标
     public static int[] chess_num = new int[3];//双方的棋子数量，1为红方，2为黄方
     public static Sprite mouse_picture_red;
-    public static Sprite mouse_picture_yellow;
+    public static Sprite mouse_picture_yellow;//用来存储两种光标图案
     public static int is_win;//判定是否比赛结束，0表示未分出胜负
-    public static void change_controller()
+    public static void change_controller() //回合结束换人
     {
         remain_time = 30f;
         if (cur_id == 1)
@@ -123,15 +123,16 @@ public class glob //此类专用于定义全局变量和全局方法
     }
 }
 
+
 [System.Serializable]
 public class chess
 {
-    public int cur_movx = 0, cur_movy = 0;
-    public int is_moving = 0;
-    public GameObject obj;
-    public int posx, posy;
-    public int is_selected = 0, id;
-    public int is_destroyed = 0;
+    public int cur_movx = 0, cur_movy = 0;//实现平滑移动的中间变量
+    public int is_moving = 0;//表示棋子是否在移动
+    public GameObject obj;//表示棋子的gameobject成员
+    public int posx, posy;//棋子的当前位置（以棋盘的左下角第一格为（0，0）坐标轴原点）
+    public int is_selected = 0, id;//分别表示棋子是否被选中及其所属玩家
+    public int is_destroyed = 0;//表示棋子是否已经被破坏（游戏结束或者被吃掉）
     public chess(int id,int px,int py)
     {
         if (id == 1)
@@ -154,8 +155,8 @@ public class chess
     } 
     /*多线程延时，废案
     Thread t1;
-    int movx=0, movy=0;//专门整一个成员出来存数据
-    public int move(int x,int y)//外部调用的
+    int movx=0, movy=0;
+    public int move(int x,int y)//外部调用
     {
         if (this.posx <= 0 && x < 0) return 0;
         if (this.posy <= 0 && y < 0) return 0;
@@ -176,7 +177,7 @@ public class chess
         return 1;
     }
     
-    public void move_r()//马甲
+    public void move_r()//多线程马甲
     {
         Thread.Sleep(1000);
         //   Debug.Log(posx);
@@ -188,7 +189,7 @@ public class chess
         glob.check();
     }
    */
-    public int move(int x,int y)
+    public int move(int x,int y)//移动棋子的方法
     {
         if (this.posx <= 0 && x < 0) return 0;
         if (this.posy <= 0 && y < 0) return 0;
@@ -215,7 +216,7 @@ public class chess
         this.posx = -222;
         this.posy = -222;
     }
-    public void auto_move()
+    public void auto_move()//实现棋子平滑移动的方法
     {
         if (this.is_moving >= 30)
         {
@@ -273,11 +274,6 @@ public class mouse
         if (Mathf.Abs(x) + Mathf.Abs(y) > 1) return;
         this.cur_movx = x;
         this.cur_movy = y;
-        //   this.obj.transform.Translate(new Vector2(x, y));
-        //   test_move(x, y);
-        //    StartCoroutine(test_move(x, y));
-        //   MonoBehaviour.print("!");
-        
         this.posx += x;
         this.posy += y;
         this.is_moving = 1;

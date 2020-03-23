@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class controller : MonoBehaviour
 {
-    public GameObject hajime_red, hajime_yellow, hajime_button, sample_black, sample_white;
+    public GameObject hajime_red, hajime_yellow, hajime_button, sample_black, sample_white;//几个变量分别都是游戏中棋子，光标等物体的样本
     int select_status = -1;
     // Start is called before the first frame update
     void Start()
@@ -16,21 +16,21 @@ public class controller : MonoBehaviour
     void Update()
     {
         
-        glob.mou.auto_move();
-        for(int i = 0; i < 8; ++i)
+        glob.mou.auto_move();//平滑移动功能需要每帧进行外部调用
+        for(int i = 0; i < 8; ++i)//同上
         {
             if (glob.chesses[i].is_destroyed == 0)
             {
                 glob.chesses[i].auto_move();
             }
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))//按esc键退出游戏
         {
             Application.Quit();
         }
         if (glob.is_win == 0)
         {
-            if (Input.GetKeyDown(KeyCode.A) && glob.mou.is_moving == 0 && glob.is_pause == 0) 
+            if (Input.GetKeyDown(KeyCode.A) && glob.mou.is_moving == 0 && glob.is_pause == 0) //选择棋子
             {
                 select_status = -1;
                 for (int i = 0; i < 8; ++i)
@@ -43,7 +43,7 @@ public class controller : MonoBehaviour
                 }
            //     print(select_status + "!");
             }
-            if (select_status == -1)
+            if (select_status == -1)//若未选中棋子，则移动的应该是鼠标
             {
                 if (glob.mou.is_moving == 0 && glob.is_pause == 0) 
                 {
@@ -57,7 +57,7 @@ public class controller : MonoBehaviour
                         glob.mou.move(1, 0);
                 }
             }
-            else if(glob.is_pause == 0)
+            else if(glob.is_pause == 0)//若选中了棋子，则移动的应该是棋子（鼠标不动）
             {
                 int mx = 0, my = 0;
                 if (Input.GetKeyDown(KeyCode.UpArrow)) my = 1;
@@ -73,7 +73,7 @@ public class controller : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.A))//分出胜负后按a键也可以重新开始一局游戏
             {
                 for (int i = 0; i < 8; ++i)
                 {
@@ -93,7 +93,7 @@ public class controller : MonoBehaviour
         
     }
 
-    void ini()
+    void ini()//游戏初始化函数
     {
         glob.remain_time = 30f;
         glob.mouse_picture_red = sample_black.GetComponent<SpriteRenderer>().sprite;
