@@ -21,6 +21,7 @@ public class global_define : MonoBehaviour
 
 public class glob //此类专用于定义全局变量和全局方法
 {
+    public static int is_pause = 0;
     public static float remain_time = 30f;
     public static int cur_id;//表示当前玩家ID，1为红方，2为黄方
     public static int[][] map = new int[4][];//0表示空格子，1表示红方占据格子，2表示黄方占据格子
@@ -47,6 +48,8 @@ public class glob //此类专用于定义全局变量和全局方法
     //此方法用于刷新棋盘状态
     public static void check()
     {
+        int[] ch = new int[11];
+        int des_num=0;
         for (int i = 0; i < 4; ++i) 
         {
             for(int o = 0; o < 2; ++o)
@@ -57,8 +60,9 @@ public class glob //此类专用于定义全局变量和全局方法
                     {
                         if (glob.chesses[p].posx == i && glob.chesses[p].posy == o + 2)
                         {
+                            ch[des_num++] = p;
                             Debug.Log("横吃-右" + p);
-                            glob.chesses[p].des();
+                     //       glob.chesses[p].des();
                         }
                     }
                 }
@@ -71,8 +75,9 @@ public class glob //此类专用于定义全局变量和全局方法
                     {
                         if (glob.chesses[p].posx == i && glob.chesses[p].posy == o - 2)
                         {
+                            ch[des_num++] = p;
                             Debug.Log("横吃-左" + p);
-                            glob.chesses[p].des();
+                      //      glob.chesses[p].des();
                         }
                     }
                 }
@@ -88,8 +93,9 @@ public class glob //此类专用于定义全局变量和全局方法
                     {
                         if (glob.chesses[p].posx == o + 2 && glob.chesses[p].posy == i)
                         {
+                            ch[des_num++] = p;
                             Debug.Log("纵吃-下" + p);
-                            glob.chesses[p].des();
+                       //     glob.chesses[p].des();
                         }
                     }
                 }
@@ -102,12 +108,17 @@ public class glob //此类专用于定义全局变量和全局方法
                     {
                         if (glob.chesses[p].posx == o - 2 && glob.chesses[p].posy == i)
                         {
+                            ch[des_num++] = p;
                             Debug.Log("纵吃-上" + p);
-                            glob.chesses[p].des();
+                        //    glob.chesses[p].des();
                         }
                     }
                 }
             }
+        }
+        for(int i = 0; i < des_num; ++i)
+        {
+            glob.chesses[ch[i]].des();
         }
     }
 }

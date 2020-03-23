@@ -516,4 +516,4 @@ ScriptsOnlyBuild:
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: D:/unity_practice/oop_project/test_buid/oop_project.exe
+  playerPath: D:/GitHub/oop_project/test_build/oop_project.exe

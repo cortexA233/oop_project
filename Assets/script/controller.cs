@@ -15,12 +15,7 @@ public class controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (glob.remain_time <= 0f)
-        {
-            select_status = -1;
-            glob.change_controller();
-        }
+        
         glob.mou.auto_move();
         for(int i = 0; i < 8; ++i)
         {
@@ -29,14 +24,13 @@ public class controller : MonoBehaviour
                 glob.chesses[i].auto_move();
             }
         }
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
         }
         if (glob.is_win == 0)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && glob.mou.is_moving == 0) 
+            if (Input.GetKeyDown(KeyCode.A) && glob.mou.is_moving == 0 && glob.is_pause == 0) 
             {
                 select_status = -1;
                 for (int i = 0; i < 8; ++i)
@@ -51,7 +45,7 @@ public class controller : MonoBehaviour
             }
             if (select_status == -1)
             {
-                if (glob.mou.is_moving == 0)
+                if (glob.mou.is_moving == 0 && glob.is_pause == 0) 
                 {
                     if (Input.GetKeyDown(KeyCode.UpArrow))
                         glob.mou.move(0, 1);
@@ -63,7 +57,7 @@ public class controller : MonoBehaviour
                         glob.mou.move(1, 0);
                 }
             }
-            else
+            else if(glob.is_pause == 0)
             {
                 int mx = 0, my = 0;
                 if (Input.GetKeyDown(KeyCode.UpArrow)) my = 1;
@@ -74,13 +68,12 @@ public class controller : MonoBehaviour
                 {
                     select_status = -1;
                     glob.change_controller();
-             //       glob.check();
                 }
             }
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.A))
             {
                 for (int i = 0; i < 8; ++i)
                 {
@@ -102,6 +95,7 @@ public class controller : MonoBehaviour
 
     void ini()
     {
+        glob.remain_time = 30f;
         glob.mouse_picture_red = sample_black.GetComponent<SpriteRenderer>().sprite;
         glob.mouse_picture_yellow = sample_white.GetComponent<SpriteRenderer>().sprite;
         glob.chess_num[1] = 4;
