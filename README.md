@@ -8,7 +8,7 @@
 - 本项目基于unity 2019.3稳定版开发，如需查看场景或项目全貌，请使用高于2019.3.0f的版本。
 - 如需查看代码，请打开asset/script目录，其中global_define文件为定义/声明专用，controller为游戏逻辑，player_score为UI逻辑。
 
-# 2.项目代码详解
+# 2.项目代码简述
 ## global_define.cs
 - global_define中有三个类：glob，chess和mouse（默认提供的monobehavior在本脚本中并不需要用到）。
   - glob类中负责定义各类静态（全局）数据及方法（例如判定吃子状态的check方法）。
@@ -16,4 +16,9 @@
   - mouse类负责定义光标，其中包含光标的gameobject成员obj，两种光标图案等。
 ## controller.cs
 - 该类的主要功能都在unity下的monobehavior命名空间内实现，为游戏逻辑脚本。
+- 游戏每次开始时都会执行一次ini方法进行初始化。
+- unity的monobehavior类中的Start方法会在游戏开始时执行一次，而Update方法每帧都会执行一次，通过每帧调用一次各对象的auto_move方法来实现平滑移动。
+## player_score.cs
+- 该类的主要功能都在unity下的monobehavior命名空间内实现，为UI逻辑脚本。
 - 
+- unity的monobehavior类中的Start方法会在游戏开始时执行一次，而Update方法每帧都会执行一次，通过每帧调用一次各对象的auto_move方法来实现平滑移动。
